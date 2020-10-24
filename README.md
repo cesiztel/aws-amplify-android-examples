@@ -24,3 +24,32 @@ amplify configure
 
 - Configure your Android project. For more details about how to configure just follow the steps describe here: https://docs.amplify.aws/lib/project-setup/create-application/q/platform/android
 
+# Samples
+
+## 🔐 Authentication
+
+This sample application covers the following features:
+
+- Sign in
+- Sign up
+- Forgot password (reset your password)
+
+![Alt text](images/1_authentication.png?raw=true "AWS Amplify - Android samples")
+
+### Installation
+
+- Clone the project app
+- Follow the previous AWS Amplify installation steps
+- Add the auth to your project. Behind the scenes, you are going to tell the CLI to prepare the resources are need to deploy to AWS to manage the authentication features.
+
+```
+amplify add auth
+
+Note: use the default configuration and email for the sign in
+```
+
+- Push your changes to AWS
+
+```
+amplify push
+```
