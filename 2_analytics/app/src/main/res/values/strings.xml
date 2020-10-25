@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AWS Amplify Analytics</string>
+    <string name="here_to_get">Here To Get</string>
+    <string name="welcome">Welcome !</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign up</string>
+    <string name="start_here">Start here</string>
+    <string name="register">Register</string>
+    <string name="reenter_password">Re-enter password</string>
+    <string name="one_step_more">One step more</string>
+    <string name="confirmation_code">Code</string>
+    <string name="confirm">Confirm</string>
+    <string name="signin">Sign in</string>
+</resources>

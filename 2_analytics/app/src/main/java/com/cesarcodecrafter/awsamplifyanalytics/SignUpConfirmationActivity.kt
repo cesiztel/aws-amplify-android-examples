@@ -1,4 +1,4 @@
-package com.cesarcodecrafter.awsamplifyauthentication
+package com.cesarcodecrafter.awsamplifyanalytics
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -6,6 +6,10 @@ This repository focus on show how you can integrate AWS Amplify in your Android 
 
 NOTE: The goal of the samples are to show in a very simple manner how to use the AWS Amplify Android API's. Maybe some samples does not follow the best design app architectures recommended which is intentional, so the readers can focus in the AWS Amplify Android API's
 
+It's imporant to understand that behind every AWS Amplify library there is a service or set of services which handle the execution of the functionalities that the library is offering over API calls. The following image shows the offer libraries connected with the main services that you provisioned in the AWS infrastructure:
+
+![Alt text](images/aws_amplify.png?raw=true "AWS Amplify - Android samples")
+
 # AWS Amplify Installation
 
 - Create an AWS account if you do not have already.
@@ -40,6 +44,12 @@ This sample application covers the following features:
 
 - Clone the project app
 - Follow the previous AWS Amplify installation steps
+- Set the project as Amplify project:
+
+```
+amplify init
+```
+
 - Add the auth to your project. Behind the scenes, you are going to tell the CLI to prepare the resources are need to deploy to AWS to manage the authentication features.
 
 ```
@@ -52,4 +62,49 @@ Note: use the default configuration and email for the sign in
 
 ```
 amplify push
+```
+
+## 📊 Analytics
+
+This sample application covers the following features:
+
+- Sign in
+- Sign up
+- Send authenticated analytics events with custom attributes
+
+![Alt text](images/2_analytics.png?raw=true "AWS Amplify - Android samples")
+
+### Installation
+
+- Clone the project app
+- Follow the previous AWS Amplify installation steps
+- Set the project as Amplify project:
+
+```
+amplify init
+```
+
+- Add the auth to your project. Behind the scenes, you are going to tell the CLI to prepare the resources are need to deploy to AWS to manage the authentication features.
+
+```
+amplify add auth
+
+Note: use the default configuration and email for the sign in
+```
+
+- Push your changes to AWS
+
+```
+amplify push
+```
+
+- Now you cadd add the analytics resources to your project.
+
+```
+amplify add analytics
+```
+- If you want to open the AWS management console from your console use the following command:
+
+```
+amplify console analytics
 ```
