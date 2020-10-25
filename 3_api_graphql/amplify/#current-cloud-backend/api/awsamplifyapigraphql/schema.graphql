@@ -1,0 +1,11 @@
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+  status: PostStatus!
+}
+
+enum PostStatus {
+  COMPLETED
+  UNCOMPLETED
+}

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AWS Amplify API (GraphQL)</string>
+
+    <string name="first_most_important_task_holder">Add your first most important task</string>
+    <string name="second_most_important_task_holder">Add your second most important task</string>
+    <string name="third_most_important_task_holder">Add your third most important task</string>
+</resources>
