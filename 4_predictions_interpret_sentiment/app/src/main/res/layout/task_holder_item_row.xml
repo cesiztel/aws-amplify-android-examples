@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/task_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:minHeight="64dp"
+        android:background="@color/colorSecondary"
+        card_view:cardCornerRadius="4dp">
+
+        <TextView
+                android:id="@+id/task_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.RecycleViewItemHolder"
+                android:fontFamily="@font/lato"
+                android:textColor="#c7ccdb"
+                android:padding="22dp"
+                android:textSize="16sp"
+                tools:text="Hello there"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/task_state_container"/>
+
+</androidx.cardview.widget.CardView>
