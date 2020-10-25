@@ -144,3 +144,35 @@ amplify codegen models
 ```
 amplify push
 ```
+
+## 🎭 Predictions
+
+In this sample I change the app UpTo3 to add the predictions library, specifically the sentiment interpretation. In this sample you can check as done one tasks and then you can add a sentence which describes how did you feel doing the task. After press submit button, I use the predictions library to detect the sentiment in the sentence and show a sentence of support or congratulations to the user. With AWS Amplify CLI you will create a backend with aan auth plugin to allow only use the sentiment API authentication users and then you can add the predictions plugin. 
+
+![Alt text](images/4_predictions.png?raw=true "AWS Amplify - Android samples")
+
+### Installation
+
+- Clone the project app
+- Follow the previous AWS Amplify installation steps
+- Set the project as Amplify project:
+
+```
+amplify init
+```
+
+- Add auth plugin
+
+```
+amplify add auth
+
+amplify push
+```
+
+- Add predictions
+
+```
+amplify add predictions
+
+amplify push
+```
