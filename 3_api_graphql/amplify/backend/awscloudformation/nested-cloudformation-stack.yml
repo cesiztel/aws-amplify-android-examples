@@ -68,17 +68,17 @@
 				}
 			}
 		},
-		"apiawsamplifyapigraphql": {
+		"apiupto3": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyapigraphql-dev-35649-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-upto3-dev-151021-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"CreateAPIKey": 1,
-					"AppSyncApiName": "awsamplifyapigraphql",
+					"AppSyncApiName": "upto3",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": false,
-					"S3DeploymentBucket": "amplify-awsamplifyapigraphql-dev-35649-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/0869566a581a1c6e63f1d2aa74d2c7d502dd5a7a",
+					"S3DeploymentBucket": "amplify-upto3-dev-151021-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/1c56c5cb0b24f5c991b9c5889da8d2f37118940d",
 					"env": "dev"
 				}
 			}

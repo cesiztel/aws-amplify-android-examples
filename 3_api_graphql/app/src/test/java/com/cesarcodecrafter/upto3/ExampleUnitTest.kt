@@ -1,4 +1,4 @@
-package com.cesarcodecrafter.awsamplifyapigraphql
+package com.cesarcodecrafter.upto3
 
 import org.junit.Test
 

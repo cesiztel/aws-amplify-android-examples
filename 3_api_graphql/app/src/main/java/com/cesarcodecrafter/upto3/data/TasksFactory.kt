@@ -1,18 +1,16 @@
-package com.cesarcodecrafter.awsamplifyapigraphql
+package com.cesarcodecrafter.upto3.data
 
-import com.amplifyframework.datastore.generated.model.PostStatus
 import com.amplifyframework.datastore.generated.model.Todo
+import com.cesarcodecrafter.upto3.models.Task
+import java.util.*
 
 class TasksFactory {
 
     companion object {
         val instance =  TasksFactory
-        private val activities : MutableList<Todo> = arrayListOf(
-            Todo.builder().name("Write article of AWS Amplify").status(PostStatus.UNCOMPLETED).build(),
-            Todo.builder().name( "Do the grocery").status(PostStatus.UNCOMPLETED).build()
-        )
+        private val activities : MutableList<Todo> = arrayListOf()
 
-        fun getTodayActivities() : List<Todo> = activities
+        fun getTodayActivities() : MutableList<Todo> = activities
 
         fun deleteTask(position: Int) {
             activities.removeAt(position)

@@ -5,8 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_task"
     android:background="@color/colorPrimary"
-    tools:context=".TaskActivity">
+    tools:context=".Task">
 
     <TextView
         android:id="@+id/title"
@@ -37,31 +39,46 @@
         android:fontFamily="@font/montserrat"/>
 
     <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="328dp"
-        card_view:cardCornerRadius="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="200dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        card_view:layout_constraintBottom_toBottomOf="parent"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toBottomOf="@+id/subtitle"
-        card_view:layout_constraintVertical_bias="0.041">
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintVertical_bias="0.041">
 
         <EditText
             android:id="@+id/task_name"
-            android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:padding="8dp"
             android:layout_margin="16dp"
             android:background="@null"
             android:fontFamily="@font/lato"
-            android:hint="Write your task here"/>
+            android:hint="Write your task here"
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/add_task_submit_button"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/add_task_button"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        app:layout_constraintVertical_bias="0.914" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

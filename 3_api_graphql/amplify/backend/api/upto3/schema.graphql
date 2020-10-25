@@ -1,0 +1,9 @@
+type Todo @model {
+  id: ID!
+  name: String!
+  order: Int!
+  description: String
+  status: Boolean!
+  createdAt: String,
+  updatedAt: String
+}

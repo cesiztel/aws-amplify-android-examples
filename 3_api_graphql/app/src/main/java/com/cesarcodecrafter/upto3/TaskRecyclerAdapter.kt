@@ -1,4 +1,4 @@
-package com.cesarcodecrafter.awsamplifyapigraphql
+package com.cesarcodecrafter.upto3
 
 import android.graphics.Color
 import android.view.View
@@ -6,14 +6,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.amplifyframework.datastore.generated.model.PostStatus
 import com.amplifyframework.datastore.generated.model.Todo
-import kotlinx.android.synthetic.main.task_holder_item_row.view.*
-import kotlinx.android.synthetic.main.task_holder_item_row.view.task_name
 import kotlinx.android.synthetic.main.task_item_row.view.*
 
-class TaskRecyclerAdapter(private val tasks: List<Todo>,
-                          private val taskHolderListener: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TaskRecyclerAdapter(private val tasks: List<Todo>, private val taskHolderListener: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+{
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == TYPE_TASK) {
             TaskItemHolder(parent.inflate(R.layout.task_item_row, false))
@@ -67,22 +64,17 @@ class TaskRecyclerAdapter(private val tasks: List<Todo>,
             setTaskUIState(task.status, position, clickListener)
 
             view.task_name.text = task.name
-            view.task_state_checkbox.isChecked = (task.status == PostStatus.COMPLETED)
+            view.task_state_checkbox.isChecked = task.status
             view.task_state_checkbox.setOnClickListener {
                 if (it is CheckBox) {
                     val checked: Boolean = it.isChecked
-                    if (checked) {
-                        setTaskUIState(PostStatus.COMPLETED, position, clickListener)
-                    } else {
-                        setTaskUIState(PostStatus.UNCOMPLETED, position, clickListener)
-                    }
-
+                    setTaskUIState(checked, position, clickListener)
                 }
             }
         }
 
-        private fun setTaskUIState(taskState: PostStatus, position: Int, clickListener: (Int) -> Unit) {
-            if (taskState == PostStatus.COMPLETED) {
+        private fun setTaskUIState(taskState: Boolean, position: Int, clickListener: (Int) -> Unit) {
+            if (taskState) {
                 if (view is CardView) {
                     (view as CardView).setCardBackgroundColor(Color.parseColor("#e9ecef"))
                 }

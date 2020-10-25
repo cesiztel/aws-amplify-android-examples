@@ -21,12 +21,18 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class Todo implements Model {
   public static final QueryField ID = field("id");
   public static final QueryField NAME = field("name");
+  public static final QueryField ORDER = field("order");
   public static final QueryField DESCRIPTION = field("description");
   public static final QueryField STATUS = field("status");
+  public static final QueryField CREATED_AT = field("createdAt");
+  public static final QueryField UPDATED_AT = field("updatedAt");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="Int", isRequired = true) Integer order;
   private final @ModelField(targetType="String") String description;
-  private final @ModelField(targetType="PostStatus", isRequired = true) PostStatus status;
+  private final @ModelField(targetType="Boolean", isRequired = true) Boolean status;
+  private final @ModelField(targetType="String") String createdAt;
+  private final @ModelField(targetType="String") String updatedAt;
   public String getId() {
       return id;
   }
@@ -35,19 +41,34 @@ public final class Todo implements Model {
       return name;
   }
   
+  public Integer getOrder() {
+      return order;
+  }
+  
   public String getDescription() {
       return description;
   }
   
-  public PostStatus getStatus() {
+  public Boolean getStatus() {
       return status;
   }
   
-  private Todo(String id, String name, String description, PostStatus status) {
+  public String getCreatedAt() {
+      return createdAt;
+  }
+  
+  public String getUpdatedAt() {
+      return updatedAt;
+  }
+  
+  private Todo(String id, String name, Integer order, String description, Boolean status, String createdAt, String updatedAt) {
     this.id = id;
     this.name = name;
+    this.order = order;
     this.description = description;
     this.status = status;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
   
   @Override
@@ -60,8 +81,11 @@ public final class Todo implements Model {
       Todo todo = (Todo) obj;
       return ObjectsCompat.equals(getId(), todo.getId()) &&
               ObjectsCompat.equals(getName(), todo.getName()) &&
+              ObjectsCompat.equals(getOrder(), todo.getOrder()) &&
               ObjectsCompat.equals(getDescription(), todo.getDescription()) &&
-              ObjectsCompat.equals(getStatus(), todo.getStatus());
+              ObjectsCompat.equals(getStatus(), todo.getStatus()) &&
+              ObjectsCompat.equals(getCreatedAt(), todo.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), todo.getUpdatedAt());
       }
   }
   
@@ -70,8 +94,11 @@ public final class Todo implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getName())
+      .append(getOrder())
       .append(getDescription())
       .append(getStatus())
+      .append(getCreatedAt())
+      .append(getUpdatedAt())
       .toString()
       .hashCode();
   }
@@ -82,8 +109,11 @@ public final class Todo implements Model {
       .append("Todo {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("name=" + String.valueOf(getName()) + ", ")
+      .append("order=" + String.valueOf(getOrder()) + ", ")
       .append("description=" + String.valueOf(getDescription()) + ", ")
-      .append("status=" + String.valueOf(getStatus()))
+      .append("status=" + String.valueOf(getStatus()) + ", ")
+      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -115,6 +145,9 @@ public final class Todo implements Model {
       id,
       null,
       null,
+      null,
+      null,
+      null,
       null
     );
   }
@@ -122,16 +155,24 @@ public final class Todo implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       name,
+      order,
       description,
-      status);
+      status,
+      createdAt,
+      updatedAt);
   }
   public interface NameStep {
-    StatusStep name(String name);
+    OrderStep name(String name);
+  }
+  
+
+  public interface OrderStep {
+    StatusStep order(Integer order);
   }
   
 
   public interface StatusStep {
-    BuildStep status(PostStatus status);
+    BuildStep status(Boolean status);
   }
   
 
@@ -139,14 +180,19 @@ public final class Todo implements Model {
     Todo build();
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep description(String description);
+    BuildStep createdAt(String createdAt);
+    BuildStep updatedAt(String updatedAt);
   }
   
 
-  public static class Builder implements NameStep, StatusStep, BuildStep {
+  public static class Builder implements NameStep, OrderStep, StatusStep, BuildStep {
     private String id;
     private String name;
-    private PostStatus status;
+    private Integer order;
+    private Boolean status;
     private String description;
+    private String createdAt;
+    private String updatedAt;
     @Override
      public Todo build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -154,19 +200,29 @@ public final class Todo implements Model {
         return new Todo(
           id,
           name,
+          order,
           description,
-          status);
+          status,
+          createdAt,
+          updatedAt);
     }
     
     @Override
-     public StatusStep name(String name) {
+     public OrderStep name(String name) {
         Objects.requireNonNull(name);
         this.name = name;
         return this;
     }
     
     @Override
-     public BuildStep status(PostStatus status) {
+     public StatusStep order(Integer order) {
+        Objects.requireNonNull(order);
+        this.order = order;
+        return this;
+    }
+    
+    @Override
+     public BuildStep status(Boolean status) {
         Objects.requireNonNull(status);
         this.status = status;
         return this;
@@ -175,6 +231,18 @@ public final class Todo implements Model {
     @Override
      public BuildStep description(String description) {
         this.description = description;
+        return this;
+    }
+    
+    @Override
+     public BuildStep createdAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+    
+    @Override
+     public BuildStep updatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
     
@@ -201,11 +269,14 @@ public final class Todo implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String description, PostStatus status) {
+    private CopyOfBuilder(String id, String name, Integer order, String description, Boolean status, String createdAt, String updatedAt) {
       super.id(id);
       super.name(name)
+        .order(order)
         .status(status)
-        .description(description);
+        .description(description)
+        .createdAt(createdAt)
+        .updatedAt(updatedAt);
     }
     
     @Override
@@ -214,13 +285,28 @@ public final class Todo implements Model {
     }
     
     @Override
-     public CopyOfBuilder status(PostStatus status) {
+     public CopyOfBuilder order(Integer order) {
+      return (CopyOfBuilder) super.order(order);
+    }
+    
+    @Override
+     public CopyOfBuilder status(Boolean status) {
       return (CopyOfBuilder) super.status(status);
     }
     
     @Override
      public CopyOfBuilder description(String description) {
       return (CopyOfBuilder) super.description(description);
+    }
+    
+    @Override
+     public CopyOfBuilder createdAt(String createdAt) {
+      return (CopyOfBuilder) super.createdAt(createdAt);
+    }
+    
+    @Override
+     public CopyOfBuilder updatedAt(String updatedAt) {
+      return (CopyOfBuilder) super.updatedAt(updatedAt);
     }
   }
   
