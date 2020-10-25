@@ -108,3 +108,39 @@ amplify add analytics
 ```
 amplify console analytics
 ```
+
+## 📡 API GraphQL
+
+The sample application is call UpTo3. In this sample you can add your 3 more important tasks of the day. With AWS Amplify CLI you will create a backend with a GraphQL API which you can use basic mutation operations and queries to manage the tasks.
+
+![Alt text](images/3_api_graphql.png?raw=true "AWS Amplify - Android samples")
+
+### Installation
+
+- Clone the project app
+- Follow the previous AWS Amplify installation steps
+- Set the project as Amplify project:
+
+```
+amplify init
+```
+
+- Add the api
+
+```
+amplify add api
+
+Note: select GraphQL 
+```
+
+- Generate the code
+
+```
+amplify codegen models
+```
+
+- Push your changes to AWS
+
+```
+amplify push
+```
